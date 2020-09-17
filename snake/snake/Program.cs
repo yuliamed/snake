@@ -1,17 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace snake
 {
     class Program
     {
+        //private const int Height = 80;
+
         static void Main(string[] args)
         {
-            Point p1 = new Point(1,3,'*');
-            p1.Draw();
+            //Console.SetBufferSize(80, Height);
+            VerticalLine Vline = new VerticalLine(6, 2, 8, '+');
+            Vline.DrawList();
 
-            Point p2 = new Point(4, 5, '#');
-            p2.Draw();
-           
+            HorizontalLine Hline = new HorizontalLine(5, 10, 8, '_');
+            Hline.DrawList();
             Console.ReadLine();
         }
     }
