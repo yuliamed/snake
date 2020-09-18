@@ -6,6 +6,8 @@ namespace snake
 {
     class Program
     {
+        private static object key;
+
         static void Main(string[] args)
         {
             //Console.SetBufferSize(80, Height);
@@ -22,13 +24,16 @@ namespace snake
             Point p = new Point(4, 5, '+');
             Snake snake = new Snake(p, 14, Direction.RIGHT);
             snake.DrawList();
-            snake.Move();
-            Thread.Sleep(299);
-            snake.Move();
-            Thread.Sleep(299); snake.Move();
-            Thread.Sleep(299); snake.Move();
-            Thread.Sleep(299);
-            Console.ReadLine();
+            while(true)
+            {
+                if(Console.KeyAvailable)
+                {
+                    ConsoleKeyInfo key = Console.ReadKey();
+                    snake.HandleKey(key.Key);
+                }
+                Thread.Sleep(100);
+                snake.Move();
+            }
         }
     }
 }
