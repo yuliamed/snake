@@ -38,6 +38,17 @@ namespace snake
             nextPoint.Move(1, direction);//свиг точки в направление движения
             return nextPoint;
         }
+        internal bool Eat(Point food)
+        {
+            Point head = GetNextPoint();//будет ли голова в символе еды
+            if (head.IsHit(food))
+            {
+                food.sym = head.sym;
+                pList.Add(food);
+                return true;
+            }
+            else return false;
+        }
 
         public void HandleKey(ConsoleKey key)
         {

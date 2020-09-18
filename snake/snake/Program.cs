@@ -11,28 +11,41 @@ namespace snake
         static void Main(string[] args)
         {
             //Console.SetBufferSize(80, Height);
-            VerticalLine VlineLEFT = new VerticalLine(0, 0, 40, '#');
+            VerticalLine VlineLEFT = new VerticalLine(0, 0, 30, '#');
             VlineLEFT.DrawList();
-            VerticalLine VlineRIGHT = new VerticalLine(80, 0, 40, '#');
+            VerticalLine VlineRIGHT = new VerticalLine(40, 0, 30, '#');
             VlineRIGHT.DrawList();
 
-            HorizontalLine HlineUP = new HorizontalLine(0, 80, 0, '#');
+            HorizontalLine HlineUP = new HorizontalLine(0, 40, 0, '#');
             HlineUP.DrawList();
-            HorizontalLine HlineDOWN = new HorizontalLine(0, 80, 40, '#');
+            HorizontalLine HlineDOWN = new HorizontalLine(0, 40, 30, '#');
             HlineDOWN.DrawList();
 
-            Point p = new Point(4, 5, '+');
-            Snake snake = new Snake(p, 14, Direction.RIGHT);
+            Point p = new Point(1, 1, '+');
+            Snake snake = new Snake(p, 4, Direction.RIGHT);
             snake.DrawList();
-            while(true)
+
+            FoodCreator foodCreator = new FoodCreator(40, 30, '%');
+            Point food = foodCreator.CreatFood();
+            food.Draw();
+
+            while (true)
             {
-                if(Console.KeyAvailable)
+                if (snake.Eat(food))
+                {
+                    food = foodCreator.CreatFood();
+                    food.Draw();
+                }
+                else
+                {
+                    snake.Move();
+                }
+                Thread.Sleep(100);
+                if (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo key = Console.ReadKey();
                     snake.HandleKey(key.Key);
                 }
-                Thread.Sleep(100);
-                snake.Move();
             }
         }
     }

@@ -45,6 +45,10 @@ namespace snake
                 y = y + offset;
             }
         }
+        public bool IsHit(Point p)//есть ли пересечение текущей точти с той точкой
+        {
+            return p.x==this.x && p.y == this.y;
+         }
        
         public void Draw()
         {
