@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace snake
 {
     class Program
     {
-        //private const int Height = 80;
-
         static void Main(string[] args)
         {
             //Console.SetBufferSize(80, Height);
@@ -23,6 +22,12 @@ namespace snake
             Point p = new Point(4, 5, '+');
             Snake snake = new Snake(p, 14, Direction.RIGHT);
             snake.DrawList();
+            snake.Move();
+            Thread.Sleep(299);
+            snake.Move();
+            Thread.Sleep(299); snake.Move();
+            Thread.Sleep(299); snake.Move();
+            Thread.Sleep(299);
             Console.ReadLine();
         }
     }

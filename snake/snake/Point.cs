@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -44,11 +45,16 @@ namespace snake
                 y = y - offset;
             }
         }
-
+       
         public void Draw()
         {
             Console.SetCursorPosition(x, y);
             Console.Write(sym);
+        }
+        public void Clear()
+        {
+            sym = ' ';
+            Draw();
         }
     }
     
